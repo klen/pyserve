@@ -14,7 +14,7 @@ VS
     $ serve
 
 
-.. image:: pyserve/blob/master/example.png
+.. image:: pyserve/raw/master/example.png
 
 .. contents::
 

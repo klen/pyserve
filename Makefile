@@ -12,6 +12,7 @@ clean:
 	rm -rf $(CURDIR)/dist
 	rm -rf $(CURDIR)/env
 	rm -rf $(CURDIR)/*.egg-info
+	find $(CURDIR) -name "*.pyc" -delete
 
 env:
 	virtualenv env --no-site-packages

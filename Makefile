@@ -1,7 +1,9 @@
 PYTHON=$(CURDIR)/env/bin/python
 PIP=$(CURDIR)/env/bin/pip
 
-all: env dist
+.PHONY: all clean update serve register upload
+
+all: env dist update
 
 dist:
 	$(PYTHON) $(CURDIR)/setup.py sdist
@@ -14,3 +16,15 @@ clean:
 env:
 	virtualenv env --no-site-packages
 	$(PIP) install -r $(CURDIR)/requirements.txt
+
+update:
+	$(PYTHON) setup.py develop
+
+serve:
+	$(CURDIR)/env/bin/serve
+
+register:
+	$(PYTHON) setup.py register
+
+upload: dist register
+	$(PYTHON) $(CURDIR)/setup.py upload

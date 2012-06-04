@@ -14,7 +14,7 @@ VS
     $ serve
 
 
-.. image:: example.png
+.. image:: ./example.png
 
 .. contents::
 

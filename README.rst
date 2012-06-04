@@ -30,11 +30,11 @@ Installation
 
 Distribute_: ::
 
-    $ easy_install PyServe
+    $ easy_install pyserve
 
 PIP_: ::
 
-    $ pip install PyServe
+    $ pip install pyserve
 
 
 Usage

@@ -1,0 +1,4 @@
+.ropeproject
+*.egg-info
+dist
+env

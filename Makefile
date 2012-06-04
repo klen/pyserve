@@ -27,5 +27,5 @@ serve:
 register:
 	$(PYTHON) setup.py register
 
-upload: dist register
-	$(PYTHON) $(CURDIR)/setup.py upload
+upload: env
+	$(PYTHON) $(CURDIR)/setup.py sdist register upload

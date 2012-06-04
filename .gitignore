@@ -1,5 +1,6 @@
 .ropeproject
 *.egg-info
+*.pyc
 dist
 env
 build

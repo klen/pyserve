@@ -20,8 +20,9 @@ setup(
     author=MODULE.__author__,
     author_email=MODULE.__email__,
     url=MODULE.__url__,
-    packages=find_packages(),
+    description='Serve local dirs.',
     long_description=open(README).read(),
+    packages=find_packages(),
     include_package_data=True,
     install_requires=REQUIREMENTS,
     entry_points={'console_scripts': COMMANDS},
@@ -36,5 +37,5 @@ setup(
         'Environment :: Console',
         'Topic :: Software Development :: Code Generators',
     ],
-    # test_suite='tests'
+    test_suite='tests'
 )

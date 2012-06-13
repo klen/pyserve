@@ -9,13 +9,14 @@ from .core import Entry
 MODULE_ROOT = op.abspath(op.dirname(__file__))
 
 
-def serve(path, port=5000, share=False, autoindex=False):
-    APP.config.root = Entry(path)
+def serve(args):
+    APP.config.root = Entry(args.path)
     APP.config.static = op.join(MODULE_ROOT, 'static')
-    APP.config.port = port
-    APP.config.host = '127.0.0.1' if not share else '0.0.0.0'
-    APP.config.autoindex = autoindex
-    run(APP, port=int(port), host=APP.config.host)
+    APP.config.port = args.port
+    APP.config.host = '127.0.0.1' if not args.share else '0.0.0.0'
+    APP.config.autoindex = args.autoindex
+    APP.config.hidden = args.hidden
+    run(APP, port=int(args.port), host=APP.config.host)
 
 
 def main():
@@ -33,5 +34,8 @@ def main():
     parser.add_argument('-a', '--autoindex',
             action='store_true',
             help='Enable autoindex files.')
+    parser.add_argument('-d', '--hidden',
+            action='store_false',
+            help='Hide system files.')
     args = parser.parse_args()
-    serve(args.path, port=args.port, share=args.share, autoindex=args.autoindex)
+    serve(args)

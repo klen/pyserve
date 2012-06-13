@@ -11,6 +11,7 @@ def compare(e):
 class Entry(object):
 
     default_icon = 'cross.png'
+    hidden = True
 
     def __init__(self, path, root=None):
         self.root = root
@@ -98,7 +99,8 @@ class Directory(Entry):
         entries = []
 
         for path in listdir(self.abspath):
-            entries.append(Entry(op.join(self.path, path), self.root))
+            if self.hidden or not path.startswith('.'):
+                entries.append(Entry(op.join(self.path, path), self.root))
         entries.sort(key=compare)
 
         if not self.is_root():

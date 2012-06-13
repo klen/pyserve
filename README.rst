@@ -30,7 +30,6 @@ VS
 Requirements
 ============
 - python (2.6+ or 3.0+)
-- Bottle 0.10+
 
 
 Installation

@@ -1,14 +1,25 @@
 from os import path as op
+from sys import stderr
 
 from argparse import ArgumentParser
-from flask import Flask
-from flaskext.autoindex import AutoIndex
+import bottle
+
+from .app import APP
+from .core import Entry
 
 
-def serve(path, port=5000, share=False):
-    app = Flask(__name__)
-    AutoIndex(app, browse_root=path)
-    app.run(port=int(port), host='127.0.0.1' if not share else '0.0.0.0')
+MODULE_ROOT = op.abspath(op.dirname(__file__))
+
+
+def serve(path, port=5000, share=False, autoindex=False):
+    APP.config.root = Entry(path)
+    APP.config.static = op.join(MODULE_ROOT, 'static')
+    APP.config.port = port
+    APP.config.host = '127.0.0.1' if not share else '0.0.0.0'
+    APP.config.autoindex = autoindex
+    stderr.write(str(APP.config) + '\n')
+    bottle.TEMPLATE_PATH = [APP.config.static]
+    bottle.run(APP, port=int(port), host=APP.config.host)
 
 
 def main():
@@ -23,5 +34,8 @@ def main():
     parser.add_argument('-s', '--share',
             action='store_true',
             help='Make server available externally.')
+    parser.add_argument('-a', '--autoindex',
+            action='store_true',
+            help='Enable autoindex files.')
     args = parser.parse_args()
-    serve(args.path, port=args.port, share=args.share)
+    serve(args.path, port=args.port, share=args.share, autoindex=args.autoindex)

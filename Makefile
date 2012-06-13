@@ -1,7 +1,7 @@
 PYTHON=$(CURDIR)/env/bin/python
 PIP=$(CURDIR)/env/bin/pip
 
-.PHONY: all clean update serve register upload
+.PHONY: all clean update serve register upload test
 
 all: env dist update
 
@@ -26,6 +26,9 @@ serve:
 
 register:
 	$(PYTHON) setup.py register
+
+test:
+	$(PYTHON) setup.py test
 
 upload: env
 	$(PYTHON) $(CURDIR)/setup.py sdist register upload

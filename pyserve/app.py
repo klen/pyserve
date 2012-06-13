@@ -16,6 +16,7 @@ def static(path):
 def index(path=''):
     try:
         entry = APP.config.root.parse(path)
+        entry.hidden = APP.config.hidden
 
         if entry.is_file():
             return static_file(path, APP.config.root.abspath)

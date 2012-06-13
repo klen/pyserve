@@ -9,7 +9,7 @@ PyServe is the simple command interface for HTTP serving directories.
     $ python -m SimpleHTTPServer
 
     # Python 3
-    $ python
+    $ python -m http.server
 
 VS
 

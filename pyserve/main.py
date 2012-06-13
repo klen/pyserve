@@ -1,10 +1,8 @@
-from os import path as op
-from sys import stderr
-
 from argparse import ArgumentParser
-import bottle
+from os import path as op
 
 from .app import APP
+from .bottle import run
 from .core import Entry
 
 
@@ -17,9 +15,7 @@ def serve(path, port=5000, share=False, autoindex=False):
     APP.config.port = port
     APP.config.host = '127.0.0.1' if not share else '0.0.0.0'
     APP.config.autoindex = autoindex
-    stderr.write(str(APP.config) + '\n')
-    bottle.TEMPLATE_PATH = [APP.config.static]
-    bottle.run(APP, port=int(port), host=APP.config.host)
+    run(APP, port=int(port), host=APP.config.host)
 
 
 def main():

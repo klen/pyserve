@@ -1,13 +1,11 @@
 from datetime import datetime
 from os import path as op, listdir
 
-from icons import ICONS_BY_EXT, ICONS_BY_NAME
+from .icons import ICONS_BY_EXT, ICONS_BY_NAME
 
 
-def compare(e1, e2):
-    if type(e1) is not type(e2):
-        return 1 if type(e1) is File else -1
-    return cmp(e1.name, e2.name)
+def compare(e):
+    return "%s%s" % (isinstance(e, File), e.name)
 
 
 class Entry(object):
@@ -101,7 +99,7 @@ class Directory(Entry):
 
         for path in listdir(self.abspath):
             entries.append(Entry(op.join(self.path, path), self.root))
-        entries = sorted(entries, cmp=compare)
+        entries.sort(key=compare)
 
         if not self.is_root():
             entries.insert(0, ParentDirectory(self.path, self.root))

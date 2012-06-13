@@ -32,7 +32,7 @@ def main():
             action='store_true',
             help='Make server available externally.')
     parser.add_argument('-a', '--autoindex',
-            action='store_true',
+            action='store_false',
             help='Enable autoindex files.')
     parser.add_argument('-d', '--hidden',
             action='store_false',

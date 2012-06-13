@@ -1,8 +1,9 @@
 2012-06-14  klen
 
-	* Version 0.2.0
+	* Version 0.2.1
 	* Python3 support
 	* No requirements
+	* Added 'hidden' option
 
 2012-06-04  klen
 

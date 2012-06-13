@@ -62,6 +62,7 @@ Usage
     -p PORT, --port PORT  The port of the webserver.
     -s, --share           Make server available externally.
     -a, --autoindex       Enable autoindex files.
+    -d, --hidden          Hide system files
 
 
 .. _Distribute: http://pypi.python.org/pypi/distribute

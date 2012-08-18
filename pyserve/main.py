@@ -22,20 +22,20 @@ def serve(args):
 def main():
     parser = ArgumentParser(description='Serve current directory')
     parser.add_argument('path',
-            default=op.curdir,
-            nargs='?',
-            help='Path to serve directory.')
+                        default=op.curdir,
+                        nargs='?',
+                        help='Path to serve directory.')
     parser.add_argument('-p', '--port',
-            default=5000,
-            help='The port of the webserver.')
+                        default=5000,
+                        help='The port of the webserver.')
     parser.add_argument('-s', '--share',
-            action='store_true',
-            help='Make server available externally.')
+                        action='store_true',
+                        help='Make server available externally.')
     parser.add_argument('-a', '--autoindex',
-            action='store_false',
-            help='Enable autoindex files.')
+                        action='store_false',
+                        help='Enable autoindex files.')
     parser.add_argument('-d', '--hidden',
-            action='store_false',
-            help='Hide system files.')
+                        action='store_false',
+                        help='Hide system files.')
     args = parser.parse_args()
     serve(args)

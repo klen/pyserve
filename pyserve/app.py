@@ -22,14 +22,15 @@ def index(path=''):
             return static_file(path, APP.config.root.abspath)
 
         if APP.config.autoindex:
-            index = [e for e in entry.entries if e.name in ['index.html', 'index.htm']]
+            index = [e for e in entry.entries if e.name in [
+                'index.html', 'index.htm']]
             if index:
                 return static_file(index[0].path, APP.config.root.abspath)
 
         return template('_pyserve_.html',
-                template_lookup=[APP.config.static],
-                dir=entry,
-                app=APP)
+                        template_lookup=[APP.config.static],
+                        dir=entry,
+                        app=APP)
 
     except IOError:
         return HTTPError(404)

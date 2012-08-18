@@ -17,7 +17,7 @@ by_ext = [
     ('database.png', ['db', 'sqlite', 'sqlite3']),
     ('page_white_database.png', 'sql'),
     ('page_white_gear.png', ['conf', 'cfg', 'ini', 'reg', 'sys']),
-    ('page_white_zip.png', ['zip', 'tar', 'gz', 'tgz', '7z', 'alz', 'rar', \
+    ('page_white_zip.png', ['zip', 'tar', 'gz', 'tgz', '7z', 'alz', 'rar',
                             'bin', 'cab']),
     ('cup.png', 'jar'),
     ('page_white_cup.png', ['java', 'jsp']),
@@ -50,10 +50,10 @@ by_ext = [
 ]
 
 ICONS_BY_NAME = dict(
-        Makefile='page_white_gear.png',
-        Rakefile='page_white_gear.png',
-        README='page_white_text_width.png',
-        LICENSE='shield.png',
+    Makefile='page_white_gear.png',
+    Rakefile='page_white_gear.png',
+    README='page_white_text_width.png',
+    LICENSE='shield.png',
 
 )
 

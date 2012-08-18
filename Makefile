@@ -1,34 +1,35 @@
-PYTHON=$(CURDIR)/env/bin/python
-PIP=$(CURDIR)/env/bin/pip
+MODULE=pyserve
+SPHINXBUILD=sphinx-build
+ALLSPHINXOPTS= -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
+BUILDDIR=_build
 
-.PHONY: all clean update serve register upload test
 
-all: env dist update
-
-dist:
-	$(PYTHON) $(CURDIR)/setup.py sdist
-
+.PHONY: clean
 clean:
-	rm -rf $(CURDIR)/dist
-	rm -rf $(CURDIR)/env
-	rm -rf $(CURDIR)/*.egg-info
-	find $(CURDIR) -name "*.pyc" -delete
+	sudo rm -rf build dist
+	find . -name "*.pyc" -delete
+	find . -name "*.orig" -delete
 
-env:
-	virtualenv env --no-site-packages
-	$(PIP) install -r $(CURDIR)/requirements.txt
+.PHONY: register
+	python setup.py register
 
-update:
-	$(PYTHON) setup.py develop
+.PHONY: upload
+upload:
+	python setup.py sdist upload || echo 'Upload already'
 
-serve:
-	$(CURDIR)/env/bin/serve
+.PHONY: test
+test: audit
+	python setup.py test
 
-register:
-	$(PYTHON) setup.py register
+.PHONY: audit
+audit:
+	pylama $(MODULE) -i E501
 
-test:
-	$(PYTHON) setup.py test
+.PHONY: doc
+doc:
+	python setup.py build_sphinx --source-dir=docs/ --build-dir=docs/_build --all-files
+	python setup.py upload_sphinx --upload-dir=docs/_build/html
 
-upload: env
-	$(PYTHON) $(CURDIR)/setup.py sdist register upload
+.PHONY: pep8
+pep8:
+	find $(MODULE) -name "*.py" | xargs -n 1 autopep8 -i

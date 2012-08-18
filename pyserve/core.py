@@ -126,11 +126,11 @@ class File(Entry):
     @property
     def icon(self):
         return ICONS_BY_NAME.get(
-                    self.name,
-                    ICONS_BY_EXT.get(
-                        self.ext,
-                        self.default_icon
-                    ))
+            self.name,
+            ICONS_BY_EXT.get(
+                self.ext,
+                self.default_icon
+            ))
 
 
 class RootDirectory(Directory):

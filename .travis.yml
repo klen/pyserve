@@ -14,4 +14,7 @@ branches:
 install:
     - pip install -IM pylama
 
-script: make test
+script:
+    - "if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then make audit; fi"
+    - "if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then make audit; fi"
+    - make test

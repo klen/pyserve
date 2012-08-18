@@ -1,4 +1,4 @@
-__version__ = '0.2.5'
+__version__ = '0.2.6'
 __author__ = "Kirill Klenov <horneds@gmail.com>"
 __email__ = "horneds@gmail.com"
 __license__ = "GNU LGPL"

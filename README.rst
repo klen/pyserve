@@ -3,6 +3,10 @@ PyServe
 
 PyServe is the simple command interface for HTTP serving directories.
 
+.. image:: https://secure.travis-ci.org/klen/pyserve.png?branch=develop
+    :target: http://travis-ci.org/klen/pyserve
+    :alt: Build Status
+
 ::
     
     # Python 2.*

@@ -20,10 +20,10 @@ VS
 ::
 
     # Python 2.*
-    $ serve
+    $ pyserve
 
     # Python 3
-    $ serve
+    $ pyserve
 
 
 .. image:: https://raw.github.com/klen/pyserve/master/example.png
@@ -52,9 +52,9 @@ Usage
 =====
 ::
 
-    $ serve --help
+    $ pyserve --help
 
-    usage: serve [-h] [-p PORT] [-s] [-a] [path]
+    usage: pyserve [-h] [-p PORT] [-s] [-a] [path]
 
     Serve current directory
 

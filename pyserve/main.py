@@ -49,7 +49,7 @@ def main():
                         help='Hide system files.')
     args = parser.parse_args()
 
-    setup(path=args.path, port=args.post, share=args.share,
+    setup(path=args.path, port=args.port, share=args.share,
           autoindex=args.autoindex, hidden=args.hidden)
 
     run(APP, port=int(APP.config.port), host=APP.config.host)

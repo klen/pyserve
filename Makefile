@@ -38,7 +38,7 @@ t:
 
 .PHONY: audit
 audit:
-	pylama $(MODULE) -i E501
+	pylama $(MODULE) --skip pyserve/bottle.py
 
 .PHONY: doc
 doc:

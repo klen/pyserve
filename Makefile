@@ -2,13 +2,28 @@ MODULE=pyserve
 SPHINXBUILD=sphinx-build
 ALLSPHINXOPTS= -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 BUILDDIR=_build
+VIRTUALENV=.env
 
+all: $(VIRTUALENV)
+
+$(VIRTUALENV): requirements.txt
+	@virtualenv --no-site-packages .env
+	@$(VIRTUALENV)/bin/pip install -M -r requirements.txt
+	touch $(VIRTUALENV)
+
+.PHONY: help
+# target: help - Display callable targets
+help:
+	@egrep "^# target:" [Mm]akefile
 
 .PHONY: clean
+# target: clean - Display callable targets
 clean:
-	sudo rm -rf build dist
-	find . -name "*.pyc" -delete
-	find . -name "*.orig" -delete
+	@rm -rf build dist docs/_build
+	@rm -f *.py[co]
+	@rm -f *.orig
+	@rm -f */*.py[co]
+	@rm -f */*.orig
 
 .PHONY: register
 	python setup.py register
@@ -17,8 +32,8 @@ clean:
 upload:
 	python setup.py sdist upload || echo 'Upload already'
 
-.PHONY: test
-test:
+.PHONY: t
+t:
 	python setup.py test
 
 .PHONY: audit

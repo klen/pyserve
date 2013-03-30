@@ -1,6 +1,6 @@
 from os.path import join, dirname
 
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages # nolint
 
 
 CURDIR = dirname(__file__)
@@ -8,9 +8,7 @@ NAME = 'pyserve'
 MODULE = __import__(NAME)
 README = join(CURDIR, 'README.rst')
 REQUIREMENTS = open(join(CURDIR, 'requirements.txt')).readlines()
-COMMANDS = ["%s = %s" % item for item in dict(
-        serve='pyserve.main:main'
-).items()]
+COMMANDS = ['pyserve = pyserve.main:main']
 
 
 setup(
@@ -32,10 +30,11 @@ setup(
         'Intended Audience :: System Administrators',
         'Natural Language :: Russian',
         'Natural Language :: English',
-        'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
+        'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)', # nolint
         'Programming Language :: Python',
         'Environment :: Console',
         'Topic :: Software Development :: Code Generators',
     ],
-    test_suite='tests'
+    test_suite='tests',
+    tests_require='webtest',
 )

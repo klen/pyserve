@@ -5,7 +5,7 @@ from .icons import ICONS_BY_EXT, ICONS_BY_NAME
 
 
 def compare(e):
-    return "%s%s" % (isinstance(e, File), e.name)
+    return "{0}{1}".format(isinstance(e, File), e.name)
 
 
 class Entry(object):
@@ -20,21 +20,18 @@ class Entry(object):
         self.name = op.basename(self.abspath)
         self.hidden = self.name.startswith('.')
 
-    def __new__(self, path, root=None):
+    def __new__(cls, path, root=None):
         if not root or not path or path == '/':
             return RootDirectory.__new__(RootDirectory, path)
 
-        else:
+        abspath = root.join(path)
+        if op.isdir(abspath):
+            return Directory.__new__(Directory, path, root)
 
-            abspath = root.join(path)
-            if op.isdir(abspath):
-                return Directory.__new__(Directory, path, root)
+        elif op.isfile(abspath):
+            return File.__new__(File)
 
-            elif op.isfile(abspath):
-                return File.__new__(File, path, root)
-
-            else:
-                raise IOError('{0} does not exists.'.format(abspath))
+        raise IOError('{0} does not exists.'.format(abspath))
 
     def join(self, path):
         path = path.strip('/')
@@ -77,12 +74,12 @@ class Entry(object):
 class Directory(Entry):
     default_icon = 'folder.png'
 
-    def __new__(self, *args, **kwargs):
-        return object.__new__(Directory, *args, **kwargs)
+    def __new__(cls, *args, **kwargs):
+        return object.__new__(Directory)
 
     @property
     def breadcrumb(self):
-        paths = [''] + self.abspath[len(self.root.abspath):].split('/')
+        paths = self.abspath[len(self.root.abspath):].split('/')
         paths.pop()
         breadcrumb = []
         while paths:
@@ -112,8 +109,8 @@ class Directory(Entry):
 class File(Entry):
     default_icon = 'file.png'
 
-    def __new__(self, *args, **kwargs):
-        return object.__new__(File, *args, **kwargs)
+    def __new__(cls, *args, **kwargs):
+        return object.__new__(File)
 
     def __init__(self, *args, **kwargs):
         super(File, self).__init__(*args, **kwargs)
@@ -141,8 +138,8 @@ class RootDirectory(Directory):
         super(RootDirectory, self).__init__('/', self)
         self.name = 'root'
 
-    def __new__(self, *args, **kwargs):
-        return object.__new__(RootDirectory, *args, **kwargs)
+    def __new__(cls, *args, **kwargs):
+        return object.__new__(RootDirectory)
 
     @property
     def breadcrumb(self):
@@ -161,5 +158,5 @@ class ParentDirectory(Directory):
         super(ParentDirectory, self).__init__(path, root=root)
         self.name = '..'
 
-    def __new__(self, *args, **kwargs):
-        return object.__new__(ParentDirectory, *args, **kwargs)
+    def __new__(cls, *args, **kwargs):
+        return object.__new__(ParentDirectory)

@@ -11,9 +11,10 @@
                 <th class="name" colspan="2">Name</th>
                 <th class="modified" colspan="1">Last modified</th>
                 <th class="size" colspan="1">Size</th>
+                <th></th>
                 %if not dir.is_root():
                     <tr>
-                        <td class="breadcrumb" colspan="4">
+                        <td class="breadcrumb" colspan="5">
                             <h1>
                                 %for tail, d in dir.breadcrumb:
                                 <a href="{{ d.link }}"><img src="/__serve_static__/icons/{{ d.icon }}"/>{{ d.name }}</a>
@@ -41,10 +42,11 @@
                         <td class="size">
                             {{ e.size }}
                         </td>
+                        <td></td>
                     </tr>
                 %end
             </tbody>
         </table>
-        <address>Server at {{ app.config.host }} Port {{ app.config.port }}</address>
+        <address>Server at {{ app.config.host }} Port: {{ app.config.port }} | Autoindex: {{ app.config.autoindex }} | Hidden files: {{ app.config.hidden }}</address>
     </body>
 </html>

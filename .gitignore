@@ -1,8 +1,9 @@
-.ropeproject
-.vimrc
 *.egg-info
 *.pyc
+.ropeproject
+.vimrc
+.wiki
+build
 dist
 env
 env3
-build

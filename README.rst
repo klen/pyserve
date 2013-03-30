@@ -26,7 +26,7 @@ VS
     $ serve
 
 
-.. image:: pyserve/raw/master/example.png
+.. image:: https://raw.github.com/klen/pyserve/master/example.png
 
 .. contents::
 
